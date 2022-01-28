@@ -29,6 +29,10 @@ jobs:
         run: |
           npm install
           npm run build
+      - uses: actions/upload-artifact@v2
+        with:
+          name: functions-lib
+          path: ./functions/lib
 
   deployment:
     concurrency:
@@ -41,6 +45,8 @@ jobs:
     environment:
       name: production
     steps:
+      - uses: ./.github/actions/build.yml
+        name: Build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         name: Firebase deploy
         with:
