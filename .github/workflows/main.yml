@@ -30,6 +30,7 @@ jobs:
           npm run build
 
   deployment:
+    name: Deploy production
     concurrency:
       group: deployment
       cancel-in-progress: true
@@ -51,11 +52,9 @@ jobs:
         run: |
           sudo npm install -g firebase-tools
           firebase deploy --token ${{ secrets.FIREBASE_CI_TOKEN }}
-
-      # - name: Firebase deploy hosting
-      #   uses: FirebaseExtended/action-hosting-deploy@v0
-      #   with:
-      #     entrypoint: ./
-      #     repoToken: "${{ secrets.GITHUB_TOKEN }}"
-      #     firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_TACO_PARROT }}"
-      #     channelId: live
+      - name: Firebase deploy hosting
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: "${{ secrets.GITHUB_TOKEN }}"
+          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_TACO_PARROT }}"
+          channelId: live
