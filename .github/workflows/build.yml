@@ -24,7 +24,8 @@ jobs:
       - uses: actions/checkout@v2
 
       # Build the project
-      - name: Build
+      - name: Build Functions
+        working-directory: ./functions
         run: |
           npm install
           npm run build
