@@ -31,7 +31,11 @@ jobs:
         uses: actions/upload-artifact@v2  
         with:
           name: build-artifacts
-          path: ./
+          path: |
+            ./functions/lib
+            .firebaserc
+            firebase.json
+            firstore.*
           retention-days: 14
 
   deployment:
