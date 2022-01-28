@@ -22,11 +22,9 @@ jobs:
     concurrency:
       group: deployment-hosting
       cancel-in-progress: true
-    # Run on main branch only
-    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     environment:
-      name: production
+      name: Hosting
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v2
