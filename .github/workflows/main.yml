@@ -20,19 +20,8 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-
-      # Build the project
-      - name: Build Functions
-        working-directory: ./functions
-        run: |
-          npm install
-          npm run build
-      - uses: actions/upload-artifact@v2
-        with:
-          name: functions-lib
-          path: ./functions/lib
+      - uses: Q42/taco-parrot/.github/actions/build.yml@main
+        name: Build
 
   deployment:
     concurrency:
@@ -45,7 +34,7 @@ jobs:
     environment:
       name: production
     steps:
-      - uses: ./.github/actions/build.yml
+      - uses: Q42/taco-parrot/.github/actions/build.yml@main
         name: Build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         name: Firebase deploy
