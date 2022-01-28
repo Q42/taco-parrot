@@ -63,5 +63,7 @@ jobs:
       - name: Build Functions
         working-directory: ./functions
         run: npm run build
+      - name: Install firebase tools
+        run: npm install -g firebase-tools
       - name: Firebase deploy functions
         run: firebase deploy --only functions --token ${{ secrets.FIREBASE_CI_TOKEN }}
