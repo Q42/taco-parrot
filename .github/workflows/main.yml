@@ -14,7 +14,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build:
+  build-functions:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -29,15 +29,15 @@ jobs:
           npm run lint
           npm run build
 
-  deployment:
-    name: Deploy production
+  deployment-functions:
+    name: Deploy functions
     concurrency:
-      group: deployment
+      group: deployment-functions
       cancel-in-progress: true
     # Run on main branch only
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
-    needs: build
+    needs: build-functions
     environment:
       name: production
     steps:
@@ -51,7 +51,29 @@ jobs:
       - name: Firebase deploy functions
         run: |
           sudo npm install -g firebase-tools
-          firebase deploy --token ${{ secrets.FIREBASE_CI_TOKEN }}
+          firebase deploy --only functions --token ${{ secrets.FIREBASE_CI_TOKEN }}
+      - name: Firebase deploy hosting
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: "${{ secrets.GITHUB_TOKEN }}"
+          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_TACO_PARROT }}"
+          channelId: live
+
+  deployment-hosting:
+    name: Deploy Hosting
+    concurrency:
+      group: deployment-hosting
+      cancel-in-progress: true
+    # Run on main branch only
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    #needs: build-hosting
+    environment:
+      name: production
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+      # TODO: Something with hosting build probably
       - name: Firebase deploy hosting
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
