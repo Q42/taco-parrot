@@ -25,7 +25,6 @@ jobs:
     # Run on main branch only
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
-    needs: build-functions
     environment:
       name: production
     steps:
