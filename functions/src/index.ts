@@ -15,6 +15,9 @@ import { lunchIsKlaar, watSchaftDePot } from './parrotActionJson';
 
 admin.initializeApp();
 
+/**
+ * Process request function, this processes any incoming text and returns a response sequence based on the text.
+ */
 exports.processRequest = functions.https.onRequest(async (req, res) => {
   const request = req.query.text as string;
 
@@ -33,18 +36,18 @@ exports.processRequest = functions.https.onRequest(async (req, res) => {
   res.json(sequence);
 });
 
-exports.randomIdleSequence = functions.https.onRequest(async (req, res) => {
-  const action = GetRandomActionFromArray(randomIdleActions);
-  const sequence: ParrotSequence = { actions: [action] };
-  res.json(sequence);
-});
-
+/**
+ * Get an action based on a specific command.
+ */
 exports.getActionForCommand = functions.https.onRequest(async (req, res) => {
   const command = req.query.command;
 
   let action = GetRandomActionFromArray(begrijpHetNietActions);
 
   switch (command) {
+    case ParrotCommands.RANDOM_ACTION:
+      action = GetRandomActionFromArray(randomIdleActions);
+      break;
     case ParrotCommands.WELCOME:
       action = GetRandomActionFromArray(welcomeCommandActions);
       break;

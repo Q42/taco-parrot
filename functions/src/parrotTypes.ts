@@ -1,4 +1,5 @@
 export enum ParrotCommands {
+  RANDOM_ACTION = 'RANDOM_ACTION',
   WELCOME = 'WELCOME',
   OVERHEARD = 'OVERHEARD',
   LUNCH = 'LUNCH',
