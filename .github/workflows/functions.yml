@@ -58,6 +58,7 @@ jobs:
           cache: 'npm'
           cache-dependency-path: functions/package-lock.json
       - name: npm install
+        working-directory: ./functions
         run: npm install
       - name: Build Functions
         working-directory: ./functions
