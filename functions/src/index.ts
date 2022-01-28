@@ -10,15 +10,14 @@ import {
   begrijpHetNietActions,
 } from './parrotSequences';
 import { GetActionByKeywords, GetRandomActionFromArray } from './parrotHelpers';
-import * as keyword_extractor from 'keyword-extractor';
+import keyword_extractor from 'keyword-extractor';
 import { lunchIsKlaar, watSchaftDePot } from './parrotActionJson';
 
 admin.initializeApp();
 
 exports.processRequest = functions.https.onRequest(async (req, res) => {
-  const request = req.query.text;
+  const request = req.query.text as string;
 
-  /* @ts-ignore */
   const result: string[] = keyword_extractor.extract(request, {
     language: 'dutch',
     remove_digits: true,
