@@ -33,6 +33,7 @@ jobs:
           name: build-artifacts
           path: |
             ./functions/lib
+            ./functions/package.json
             .firebaserc
             firebase.json
             firstore.*
