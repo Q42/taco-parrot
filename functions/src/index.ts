@@ -20,6 +20,7 @@ admin.initializeApp();
  */
 exports.processRequest = functions.https.onRequest(async (req, res) => {
   const request = req.query.text as string;
+  console.debug(`Received request ${request}`);
 
   const result: string[] = keyword_extractor.extract(request, {
     language: 'dutch',
@@ -28,9 +29,9 @@ exports.processRequest = functions.https.onRequest(async (req, res) => {
     remove_duplicates: true,
   });
 
-  console.log(result);
+  console.debug(result);
   const action = GetActionByKeywords(textRequestActions, result);
-  console.log(`Found action with url ${action.audioUrl}`);
+  console.info(`Found action with url ${action.audioUrl}`);
 
   const sequence: ParrotSequence = { actions: [action] };
   res.json(sequence);
