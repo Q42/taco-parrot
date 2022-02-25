@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const keyword_extractor = require('keyword-extractor');
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 
@@ -10,7 +12,6 @@ import {
   begrijpHetNietActions,
 } from './parrotSequences';
 import { GetActionByKeywords, GetRandomActionFromArray } from './parrotHelpers';
-import keyword_extractor from 'keyword-extractor';
 import { lunchIsKlaar, watSchaftDePot } from './parrotActionJson';
 
 admin.initializeApp();
@@ -22,14 +23,17 @@ exports.processRequest = functions.https.onRequest(async (req, res) => {
   const request = req.query.text as string;
   console.debug(`Received request ${request}`);
 
-  const result: string[] = keyword_extractor.extract(request, {
-    language: 'dutch',
-    remove_digits: true,
-    return_changed_case: true,
-    return_chained_words: false,
-    return_max_ngrams: false,
-    remove_duplicates: true,
-  });
+  let result: string[] = [];
+  try {
+    result = keyword_extractor.extract(request, {
+      language: 'dutch',
+      remove_digits: true,
+      return_changed_case: true,
+    });
+  } catch (err) {
+    console.error(`There was an error extracting keywords: ${err}`);
+    console.error(err);
+  }
 
   console.debug(result);
   const action = GetActionByKeywords(textRequestActions, result);
