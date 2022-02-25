@@ -26,6 +26,8 @@ exports.processRequest = functions.https.onRequest(async (req, res) => {
     language: 'dutch',
     remove_digits: true,
     return_changed_case: true,
+    return_chained_words: false,
+    return_max_ngrams: false,
     remove_duplicates: true,
   });
 
