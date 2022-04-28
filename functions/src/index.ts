@@ -23,6 +23,16 @@ exports.processRequest = functions.https.onRequest(async (req, res) => {
   const request = req.query.text as string;
   console.debug(`Received request ${request}`);
 
+  // CORS
+  res.set('Access-Control-Allow-Origin', '*');
+  if (req.method === 'OPTIONS') {
+    res.set('Access-Control-Allow-Methods', 'GET');
+    res.set('Access-Control-Allow-Headers', 'Content-Type');
+    res.set('Access-Control-Max-Age', '3600');
+    res.status(204).send('');
+    return;
+  }
+
   let result: string[] = [];
   try {
     result = keyword_extractor.extract(request, {
