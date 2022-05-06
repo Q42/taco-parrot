@@ -59,6 +59,16 @@ exports.processRequest = functions.https.onRequest(async (req, res) => {
 exports.getActionForCommand = functions.https.onRequest(async (req, res) => {
   const command = req.query.command;
 
+  // CORS
+  res.set('Access-Control-Allow-Origin', '*');
+  if (req.method === 'OPTIONS') {
+    res.set('Access-Control-Allow-Methods', 'GET');
+    res.set('Access-Control-Allow-Headers', 'Content-Type');
+    res.set('Access-Control-Max-Age', '3600');
+    res.status(204).send('');
+    return;
+  }
+
   let action = GetRandomActionFromArray(begrijpHetNietActions);
 
   switch (command) {

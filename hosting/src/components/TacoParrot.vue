@@ -1,6 +1,10 @@
 <script setup lang="ts">
+import { Sleep } from "@/helpers";
 import { ref } from "vue";
-import type { ParrotMovement, ParrotSequence } from "../../../functions/src/parrotTypes";
+import type {
+  ParrotMovement,
+  ParrotSequence,
+} from "../../../functions/src/parrotTypes";
 
 let movement = ref("");
 let tacoImg = ref("taco/neutral.png");
@@ -24,7 +28,7 @@ async function HandleAction(sequence: ParrotSequence) {
   }
 }
 
-async function HandleMovement(movement: ParrotMovement){
+async function HandleMovement(movement: ParrotMovement) {
   console.log(movement.type);
   let actionWaitTime = 0;
 
@@ -32,14 +36,14 @@ async function HandleMovement(movement: ParrotMovement){
     case "BLINK":
       tacoImg.value = "taco/closed_eye.png";
       actionWaitTime = 70;
-      await sleep(actionWaitTime);
+      await Sleep(actionWaitTime);
       tacoImg.value = "taco/neutral.png";
       break;
     case "MOUTH_OPEN":
       tacoImg.value = "taco/mouth_open.png";
-      await sleep(300);
+      await Sleep(300);
       tacoImg.value = "taco/closed_eye.png";
-      await sleep(100);
+      await Sleep(100);
       tacoImg.value = "taco/neutral.png";
       actionWaitTime = 200;
       break;
@@ -49,11 +53,7 @@ async function HandleMovement(movement: ParrotMovement){
     default:
       tacoImg.value = "taco/neutral.png";
   }
-  await sleep(Math.max(0, movement.offset * 1000 - actionWaitTime));
-}
-
-async function sleep(ms: number) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
+  await Sleep(Math.max(0, movement.offset * 1000 - actionWaitTime));
 }
 
 defineExpose({
