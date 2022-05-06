@@ -37,6 +37,7 @@ jobs:
       - name: build hosting
         working-directory: 'hosting/'
         run: |
+          npm install
           npm run build
       - name: Firebase deploy hosting
         uses: FirebaseExtended/action-hosting-deploy@v0
