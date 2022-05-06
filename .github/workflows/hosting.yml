@@ -29,7 +29,7 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v3
       - name: build hosting
-        working-directory: '/hosting'
+        working-directory: 'hosting/'
         run: |
           npm run build
       - name: Firebase deploy hosting
