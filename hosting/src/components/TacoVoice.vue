@@ -67,7 +67,7 @@ const CheckForCommand = async (result: any) => {
   } else if (keywordDetected) {
     keywordDetected = false;
     sr.stop();
-    SendQuery(transcript.value.toLowerCase());
+    await SendQuery(transcript.value.toLowerCase());
     setTimeout(() => sr.start(), 100);
   }
 };
@@ -99,7 +99,12 @@ async function SendCommand(command: ParrotCommands) {
 
 function getSequenceTime(sequence: ParrotSequence): number {
   let sequenceTime = 0;
-  sequence.actions.forEach((action) => action.movements.forEach((m) => sequenceTime += m.offset));
+  sequence.actions.forEach((action) =>
+    action.movements.forEach((m) => (sequenceTime += m.offset))
+  );
+  if (sequenceTime == 0) {
+    sequenceTime = 2; // default time
+  }
   return sequenceTime * 1000;
 }
 
