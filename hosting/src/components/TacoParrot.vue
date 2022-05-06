@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import type { ParrotSequence } from "../../../functions/src/parrotTypes";
+import type { ParrotMovement, ParrotSequence } from "../../../functions/src/parrotTypes";
 
 let movement = ref("");
+let tacoImg = ref("taco/neutral.png");
 
 async function HandleAction(sequence: ParrotSequence) {
   // Go over all sequences for the action
@@ -13,9 +14,7 @@ async function HandleAction(sequence: ParrotSequence) {
 
     // Execute all movements for the audio
     for await (const move of action.movements) {
-      console.log(move.type);
-      movement.value += move.type.toString() + "\n";
-      await new Promise((f) => setTimeout(f, move.offset * 1000));
+      await HandleMovement(move);
     }
 
     // Wait for the audio to finish.
@@ -25,14 +24,45 @@ async function HandleAction(sequence: ParrotSequence) {
   }
 }
 
+async function HandleMovement(movement: ParrotMovement){
+  console.log(movement.type);
+  let actionWaitTime = 0;
+
+  switch (movement.type) {
+    case "BLINK":
+      tacoImg.value = "taco/closed_eye.png";
+      actionWaitTime = 70;
+      await sleep(actionWaitTime);
+      tacoImg.value = "taco/neutral.png";
+      break;
+    case "MOUTH_OPEN":
+      tacoImg.value = "taco/mouth_open.png";
+      await sleep(300);
+      tacoImg.value = "taco/closed_eye.png";
+      await sleep(100);
+      tacoImg.value = "taco/neutral.png";
+      actionWaitTime = 200;
+      break;
+    case "MOVE_FORWARD":
+      tacoImg.value = "taco/wingflap.png";
+      break;
+    default:
+      tacoImg.value = "taco/neutral.png";
+  }
+  await sleep(Math.max(0, movement.offset * 1000 - actionWaitTime));
+}
+
+async function sleep(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 defineExpose({
   HandleAction,
 });
 </script>
 
 <template>
-  <h3>Taco response</h3>
-  <pre>{{ movement }}</pre>
+  <img :src="tacoImg" width="500" />
 </template>
 
 <style scoped>

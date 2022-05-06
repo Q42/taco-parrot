@@ -216,7 +216,7 @@ export const blijBlij: ParrotAction = {
 };
 
 export const kwartOverBier: ParrotAction = {
-  keywords: [],
+  keywords: ['bier', 'tijd'],
   audioUrl:
     'https://firebasestorage.googleapis.com/v0/b/taco-parrot.appspot.com/o/KwartOverBier.mp3?alt=media&token=1f607899-424d-477b-b331-a86385cec6d3',
   movements: [
