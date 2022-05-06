@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "hosting"
+		},
+		{
+			"path": "functions"
+		},
+		{
+			"path": "."
+		}
+	],
+	"settings": {}
+}
