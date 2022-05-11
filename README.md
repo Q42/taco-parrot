@@ -33,7 +33,7 @@ Open a second terminal and run the following commands from the root folder to st
 
 After running both these commands you can reach the emulator on <http://localhost:3000/>
 
-### Development
+## Development
 
 #### Frontend
 
