@@ -2,7 +2,7 @@
 import { ref } from "vue";
 import type { ParrotSequence } from "../../functions/src/parrotTypes";
 import TacoParrot from "./components/TacoParrot.vue";
-import TacoVoice from './components/TacoVoice.vue'
+import TacoVoice from "./components/TacoVoice.vue";
 import { loadScript } from "vue-plugin-load-script";
 loadScript("https://storage.googleapis.com/static.q42.nl/q42.js");
 
@@ -29,7 +29,7 @@ function handleCommand(actions: ParrotSequence) {
 </template>
 
 <style>
-@import './assets/base.css';
+@import "./assets/base.css";
 
 #app {
   max-width: 1280px;

@@ -24,6 +24,7 @@ async function HandleAction(sequence: ParrotSequence) {
     // Wait for the audio to finish.
     var audioTimeLeft = audio.duration - audio.currentTime;
     await new Promise((f) => setTimeout(f, audioTimeLeft * 1000));
+    tacoImg.value = "taco/neutral.png";
     movement.value = "";
   }
 }
