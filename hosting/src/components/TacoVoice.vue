@@ -6,10 +6,14 @@ import {
   ParrotCommands,
   type ParrotSequence,
 } from "../../../functions/src/parrotTypes";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faMicrophone } from "@fortawesome/free-solid-svg-icons";
 
 const emit = defineEmits<{
   (e: "tacoCommand", action: ParrotSequence): void;
 }>();
+
+library.add(faMicrophone);
 
 const QUERY_API_URL = import.meta.env.DEV
   ? "http://localhost:5001/taco-parrot/us-central1/processRequest"
@@ -122,6 +126,7 @@ async function send() {
       <button :class="`mic`" @click="ToggleMic">
         {{ voiceControl ? "Disable" : "Enable" }} speech recognition
       </button>
+      <font-awesome-icon v-if="isRecording" icon="microphone" />
       <div v-if="isRecording" class="transcript" v-text="transcript"></div>
       <input v-if="!voiceControl" type="text" v-model="text" />
       <button v-if="!voiceControl" @click="send">Send!</button>
