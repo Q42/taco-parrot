@@ -9,6 +9,8 @@ The repository contains the functions to run the firebase side of Taco parrot an
 Make sure you have node version 16 installed, the easiest way to do this is by using [nvm](https://github.com/nvm-sh/nvm).
 If you have nvm installed you can install the required node version by running `nvm install` in the root of this repository.
 
+Make sure you have [firebase-tools](https://www.npmjs.com/package/firebase-tools) installed (`npm install -g firebase-tools`)
+
 ### Starting the emulator
 
 Open a terminal and run the following commands from the root folder to start the functions:
