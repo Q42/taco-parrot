@@ -297,3 +297,59 @@ export const nietGetestOverheard: ParrotAction = {
     'https://firebasestorage.googleapis.com/v0/b/taco-parrot.appspot.com/o/NietGetest.mp3?alt=media&token=61f6cc9e-041e-42d7-990f-414f9ba5896c',
   movements: [],
 };
+
+export const lorre: ParrotAction = {
+  keywords: [],
+  audioUrl:
+    'https://firebasestorage.googleapis.com/v0/b/taco-parrot.appspot.com/o/lorre.mp3?alt=media&token=f73588ab-bacf-4075-97f3-63d1e5886b71',
+  movements: [],
+};
+
+export const marieketrudy: ParrotAction = {
+  keywords: [],
+  audioUrl:
+    'https://firebasestorage.googleapis.com/v0/b/taco-parrot.appspot.com/o/marieketrudy.mp3?alt=media&token=3e026b2c-901c-4e40-9eb6-777e54913001',
+  movements: [],
+};
+
+export const leukhaar: ParrotAction = {
+  keywords: [],
+  audioUrl:
+    'https://firebasestorage.googleapis.com/v0/b/taco-parrot.appspot.com/o/leukhaar.mp3?alt=media&token=ad297f91-2367-4f56-95e7-c94f6ff23a12',
+  movements: [],
+};
+
+export const veterlos: ParrotAction = {
+  keywords: [],
+  audioUrl:
+    'https://firebasestorage.googleapis.com/v0/b/taco-parrot.appspot.com/o/veterlos.mp3?alt=media&token=1a574d96-58f2-4a23-ba12-b34ef6538cf2',
+  movements: [],
+};
+
+export const tacowilpatat: ParrotAction = {
+  keywords: [],
+  audioUrl:
+    'https://firebasestorage.googleapis.com/v0/b/taco-parrot.appspot.com/o/tacowilpatat.mp3?alt=media&token=68b758c7-e3d8-4789-9b76-b98e8b8829ed',
+  movements: [],
+};
+
+export const bakkertje: ParrotAction = {
+  keywords: [],
+  audioUrl:
+    'https://firebasestorage.googleapis.com/v0/b/taco-parrot.appspot.com/o/bakkertje.mp3?alt=media&token=19fff003-d827-4a4b-830f-6e2ccd8a7d67',
+  movements: [],
+};
+
+export const linde: ParrotAction = {
+  keywords: [],
+  audioUrl:
+    'https://firebasestorage.googleapis.com/v0/b/taco-parrot.appspot.com/o/linde.mp3?alt=media&token=1a5f60f3-b577-48da-b0aa-7e77f97877d9',
+  movements: [],
+};
+
+export const nootjes: ParrotAction = {
+  keywords: [],
+  audioUrl:
+    'https://firebasestorage.googleapis.com/v0/b/taco-parrot.appspot.com/o/nootjes.mp3?alt=media&token=fccf5126-a3aa-44ec-80df-1922586075d3',
+  movements: [],
+};
