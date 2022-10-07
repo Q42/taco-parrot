@@ -25,8 +25,15 @@ import {
   papegaaittjeLeefJeNog,
   antwoord42,
   trudyTrudy,
-  lunchIsKlaar,
   watBedoelJe,
+  lorre,
+  marieketrudy,
+  leukhaar,
+  veterlos,
+  tacowilpatat,
+  bakkertje,
+  linde,
+  nootjes,
 } from './parrotActionJson';
 import { ParrotAction } from './parrotTypes';
 
@@ -59,7 +66,15 @@ export const randomIdleActions: ParrotAction[] = [
   olaCHicaAction,
   watMoetJeAction,
   trudyTrudy,
-  lunchIsKlaar,
+  watBedoelJe,
+  lorre,
+  marieketrudy,
+  leukhaar,
+  veterlos,
+  tacowilpatat,
+  bakkertje,
+  linde,
+  nootjes,
 ];
 
 export const begrijpHetNietActions: ParrotAction[] = [
